@@ -94,7 +94,4 @@ if __name__ == "__main__":
 
     logger.join()
 
-    df = pd.DataFrame(arr, columns=arr.dtype.names)
-    # df.to_csv(os.path.join(os.getcwd(), str(time.time()) + "-out.csv"))
-    df.to_csv(os.path.join(os.getcwd(), "tmp.csv"))
     print("log ended.")
