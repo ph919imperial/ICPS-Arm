@@ -63,6 +63,9 @@ def log_data():
             arr = np.concatenate((arr, data))
     except queue.Empty:
         print("queue empty, ending log...")
+        df = pd.DataFrame(arr, columns=arr.dtype.names)
+        # df.to_csv(os.path.join(os.getcwd(), str(time.time()) + "-out.csv"))
+        df.to_csv(os.path.join(os.getcwd(), "tmp.csv"))
         # ani.event_source.stop()
 
 
