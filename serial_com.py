@@ -18,22 +18,28 @@ import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
 
 dq = queue.Queue()
-dt = np.dtype([("emg1_adc", "<u2"), ("emg1_volt", "<f")])
+# dt = np.dtype([("emg1_volt", "<f")])
+dt = np.dtype([("emg1_volt", "<f"), ("emg2_volt", "<f")])
 arr = np.empty(0, dtype=dt)
 
 fig, ax = plt.subplots()
-(ln,) = ax.plot([], [])
+# (ln,) = ax.plot([], [])
+(ln1,ln2,) = ax.plot([], [], [])
 
 
 def init_plot():
     ax.set_ylim(0, 5)
     ax.set_xlim(0, 100)
-    return (ln,)
+    # return (ln,)
+    return (ln1,ln2,)
 
 
 def update_plot(frame):
-    ln.set_data(range(len(arr["emg1_volt"][-100:])), arr["emg1_volt"][-100:])
-    return (ln,)
+    # ln.set_data(range(len(arr["emg1_volt"][-100:])), arr["emg1_volt"][-100:])
+    # return (ln,)
+    ln1.set_data(range(len(arr["emg1_volt"][-100:])), arr["emg1_volt"][-100:])
+    ln2.set_data(range(len(arr["emg2_volt"][-100:])), arr["emg2_volt"][-100:])
+    return (ln1,ln2,)
 
 
 class ReadRaw(serial.threaded.Protocol):
